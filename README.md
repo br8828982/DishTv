@@ -49,7 +49,7 @@ A modern, feature-rich Android IPTV player built with the latest Android technol
 - **Language**: Kotlin 2.0.21
 - **UI Framework**: Jetpack Compose with Material 3
 - **Architecture**: MVVM with Hilt dependency injection
-- **Media**: Media3/ExoPlayer 1.4.1 with FFmpeg decoder support
+- **Media**: Media3/ExoPlayer 1.4.1 with native Android codec support
 - **Database**: Room database for local data persistence
 - **Networking**: Retrofit + OkHttp for playlist management
 - **Image Loading**: Coil for channel logo loading
@@ -157,6 +157,11 @@ app/
 ```bash
 git clone <repository-url>
 cd dishtv-android
+
+# Set up Android SDK path in local.properties
+echo "sdk.dir=/path/to/your/android/sdk" > local.properties
+
+# Build the project
 ./gradlew build
 ```
 
@@ -165,14 +170,18 @@ cd dishtv-android
 ./gradlew installDebug
 ```
 
+**Note**: Ensure you have Android SDK installed and properly configured. The app targets SDK 36 with minimum SDK 24 for broad device compatibility.
+
 ## 📊 Supported Formats
 
 ### Video Codecs
-- H.264 (AVC)
-- H.265 (HEVC)
-- VP8, VP9
-- AV1 (on supported devices)
-- MPEG-2, MPEG-4
+- H.264 (AVC) - Full support on all devices
+- H.265 (HEVC) - Hardware decoder on supported devices
+- VP8, VP9 - Google codecs with full support
+- AV1 - On newer Android devices with hardware support
+- MPEG-2, MPEG-4 - Legacy format support
+
+**Note**: Uses Android's native MediaCodec framework for optimal performance and battery life. Hardware acceleration automatically enabled where available.
 
 ### Audio Codecs
 - AAC, AAC+
