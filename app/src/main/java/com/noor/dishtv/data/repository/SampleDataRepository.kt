@@ -144,13 +144,13 @@ class SampleDataRepository @Inject constructor(
                     scheme = DrmScheme.WIDEVINE,
                     licenseUrl = "https://example.com/widevine-license",
                     headers = mapOf(
-                        "Authorization" -> "Bearer sample_token",
-                        "X-Custom-Header" -> "premium_user"
+                        "Authorization" to "Bearer sample_token",
+                        "X-Custom-Header" to "premium_user"
                     )
                 ),
                 headers = mapOf(
-                    "User-Agent" -> "DishTV IPTV Player",
-                    "Referer" -> "https://dishtv.com"
+                    "User-Agent" to "DishTV IPTV Player",
+                    "Referer" to "https://dishtv.com"
                 ),
                 sortOrder = 11
             ),
